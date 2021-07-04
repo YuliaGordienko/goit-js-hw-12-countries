@@ -13,8 +13,6 @@ const refs = {
 refs.input.addEventListener("input", debounce(searchCountry, 500))
 
 
-
-
 function cardsMarkUp({ name }) {
   return ` <div class="card-wrapper">
       <div class="wrap-for-one-country">
@@ -43,8 +41,10 @@ function countriesNotFound() {
     text: "Please enter another name of country"
   });
 }
-function searchCountry() {
-  const country = refs.input.value
+function searchCountry(event) {
+  refs.wrapper.innerHTML = ''
+  event.preventDefault();
+  const country = refs.input.value.trim();
   let cards = '';
   if (!country) {
     refs.wrapper.innerHTML = ''
@@ -68,7 +68,6 @@ function searchCountry() {
 
       refs.wrapper.insertAdjacentHTML("beforeend", cards)
 
+
     })
-
-
 }
